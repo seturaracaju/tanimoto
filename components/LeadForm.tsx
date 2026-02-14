@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { supabase } from '../supabase';
 
 interface LeadFormProps {
   onComplete: (name: string) => void;
@@ -12,15 +13,37 @@ const LeadForm: React.FC<LeadFormProps> = ({ onComplete }) => {
     email: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      // Enviando para o Supabase
+      // Importante: A coluna está como 'whasapp' conforme o print do banco de dados
+      const { error } = await supabase
+        .from('lead')
+        .insert([
+          { 
+            nome_completo: formData.name, 
+            whasapp: formData.whatsapp, 
+            email: formData.email 
+          }
+        ]);
+
+      if (error) {
+        console.error('Erro Supabase:', error);
+        throw new Error('Falha ao salvar seus dados. Por favor, tente novamente.');
+      }
+
+      // Sucesso
       onComplete(formData.name);
-    }, 2200);
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Ocorreu um erro inesperado.');
+      setIsLoading(false);
+    }
   };
 
   const inputClasses = "w-full bg-white/5 border border-white/10 px-8 py-6 rounded-3xl text-white outline-none focus:border-[#F5C518] transition-all duration-500 glow-border text-lg font-medium placeholder:text-white/10";
@@ -66,11 +89,17 @@ const LeadForm: React.FC<LeadFormProps> = ({ onComplete }) => {
           />
         </div>
       </div>
+
+      {errorMessage && (
+        <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-2xl text-center text-sm font-bold animate-pulse">
+          {errorMessage}
+        </div>
+      )}
       
       <div className="pt-6 space-y-6">
         <div className="flex items-center justify-center gap-3 text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
            <span className="w-1.5 h-1.5 bg-[#F5C518] rounded-full animate-pulse"></span>
-           Conteúdo exclusivo para participantes de eventos Alfredo Tanimoto
+           Conexão direta com Alfredo Tanimoto | Encriptação Ativa
         </div>
         
         <button
@@ -84,7 +113,7 @@ const LeadForm: React.FC<LeadFormProps> = ({ onComplete }) => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              PROCESSANDO ACESSO...
+              SALVANDO LEAD NO PORTAL...
             </span>
           ) : (
             <>

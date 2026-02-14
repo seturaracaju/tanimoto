@@ -15,7 +15,9 @@ import {
   Award,
   Play,
   Lock,
-  ChevronDown
+  ChevronDown,
+  Star,
+  Users
 } from 'lucide-react';
 import LeadForm from './LeadForm';
 
@@ -55,7 +57,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
 
       {/* HERO MASTERCLASS EXPERIENCE */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image with Specialized Radial Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://pub-872633efa2d545638be12ea86363c2ca.r2.dev/tanimoto.jpeg" 
@@ -63,7 +64,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 hero-overlay"></div>
-          {/* Subtle light hit on the face area to ensure visibility */}
           <div className="hidden md:block absolute top-[25%] right-[15%] w-[400px] h-[400px] bg-[#F5C518]/5 rounded-full blur-[100px]"></div>
         </div>
 
@@ -104,9 +104,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
               </div>
             </div>
 
-            {/* Social Proof Logos Bar (Authority) */}
             <div className="pt-16 border-t border-white/5 space-y-6 max-w-2xl">
-              <p className="text-[10px] font-black tracking-[0.4em] text-white/30 uppercase text-center md:text-left">Empresas & Mídia</p>
+              <p className="text-[10px] font-black tracking-[0.4em] text-white/30 uppercase text-center md:text-left">Destaque em Grandes Mídias & Empresas</p>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-10 opacity-40 grayscale hover:grayscale-0 transition-all">
                 {['XEROX', 'ACCOR', 'RECORD TV', 'BAND', 'CBN'].map(logo => (
                   <span key={logo} className="text-white font-black tracking-widest text-lg md:text-xl italic">{logo}</span>
@@ -116,7 +115,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
           </div>
         </div>
         
-        {/* Animated Anchor */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer opacity-30 hover:opacity-100 transition-all" onClick={scrollToForm}>
            <span className="text-[10px] font-black tracking-[0.5em] uppercase vertical-lr">Scroll</span>
            <ChevronDown className="w-6 h-6 animate-bounce" />
@@ -147,11 +145,77 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
         </div>
       </section>
 
+      {/* QUEM É ALFREDO (AUTORIDADE RESTAURADA) */}
+      <section className="py-40 bg-slate-50 relative border-y border-slate-100">
+        <div className="container mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+          <div className="relative group order-2 lg:order-1">
+            <div className="absolute -inset-6 bg-[#F5C518]/5 rounded-[40px] blur-2xl"></div>
+            <img 
+              src="https://pub-872633efa2d545638be12ea86363c2ca.r2.dev/tanimoto3.jpeg" 
+              alt="Alfredo Tanimoto Perfil" 
+              className="rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.1)] relative z-10 w-full object-cover aspect-[4/5] grayscale hover:grayscale-0 transition-all duration-1000"
+            />
+            <div className="absolute -bottom-10 -right-10 z-20 bg-[#0B1F3A] p-10 rounded-[40px] shadow-2xl border border-white/5 text-white max-w-[300px] space-y-4">
+              <div className="flex items-center gap-3">
+                 <div className="w-12 h-1 bg-[#F5C518]"></div>
+                 <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F5C518]">Os Números</div>
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <div className="text-5xl font-black">376+</div>
+                  <div className="text-xs uppercase font-bold tracking-[0.1em] text-white/40">Palestras Realizadas</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-black">35.000</div>
+                  <div className="text-xs uppercase font-bold tracking-[0.1em] text-white/40">Vidas Impactadas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-10 order-1 lg:order-2">
+            <div className="space-y-4">
+              <span className="text-[#F5C518] font-black tracking-[0.4em] uppercase text-xs">A Autoridade</span>
+              <h2 className="text-5xl md:text-7xl font-black text-[#050505] tracking-tighter leading-none">QUEM É ALFREDO <br/> <span className="text-blue-900">TANIMOTO?</span></h2>
+            </div>
+            <div className="space-y-6 text-xl text-slate-600 leading-relaxed font-light">
+              <p>
+                Empresário, palestrante internacional e exemplo real de superação. Após um acidente devastador que deixou apenas <span className="font-bold text-[#050505]">2% de chance de voltar a andar</span>, Alfredo reconstruiu sua vida e hoje inspira milhares de pessoas a superarem seus próprios limites.
+              </p>
+              <p>
+                Sua jornada profissional inclui cargos de destaque em multinacionais como <span className="font-bold text-[#050505]">Xerox do Brasil e Grupo Accor</span>, culminando em uma posição de liderança internacional no Japão antes do seu ponto de virada.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6">
+              {[
+                { icon: Award, label: "Autor do livro '2% Basta'", detail: "Best-seller de superação" },
+                { icon: Mic, label: "376+ Palestras", detail: "Brasil e Internacional" },
+                { icon: Globe, label: "Presença Global", detail: "Dubai, Paris, Tóquio" },
+                { icon: Star, label: "Mídia Nacional", detail: "Record, Band, CBN" }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-5 group cursor-default">
+                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg group-hover:bg-[#F5C518] transition-colors">
+                    <item.icon className="w-6 h-6 text-[#F5C518] group-hover:text-[#050505] transition-colors" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-black text-[#050505] text-sm uppercase tracking-wider">{item.label}</div>
+                    <div className="text-xs text-slate-400 font-medium">{item.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="pt-10 flex flex-col items-start gap-4">
+               <p className="text-slate-400 font-bold uppercase tracking-[0.4em] text-[10px]">Assinatura de Missão</p>
+               <span className="font-signature text-5xl text-[#0B1F3A] opacity-80">Alfredo Tanimoto</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* JORNADA DA SUPERAÇÃO (LINHA DO TEMPO) */}
       <section className="py-40 bg-[#050505] relative seigaiha-pattern">
         <div className="container mx-auto px-8">
           <div className="text-center mb-28 space-y-4">
-            <h2 className="text-4xl md:text-7xl font-black text-white">2% <span className="text-[#F5C518]">BASTA.</span></h2>
+            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter">O Caminho dos <span className="text-[#F5C518]">2%.</span></h2>
             <p className="text-white/30 uppercase tracking-[0.4em] text-xs font-black">A trajetória do impossível ao real</p>
           </div>
           
@@ -160,17 +224,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
             
             {[
               { icon: Sunrise, label: "Executivo", year: "O Início", desc: "Sucesso internacional no Japão." },
-              { icon: Flame, label: "Acidente", year: "O Choque", desc: "Tetraplegia. 2% de chances." },
+              { icon: Flame, label: "Acidente", year: "O Choque", desc: "Tetraplegia. O mundo parou." },
               { icon: RefreshCcw, label: "Milímetros", year: "A Luta", desc: "Reaprendendo a viver cada dia." },
-              { icon: Target, label: "Propósito", year: "A Missão", desc: "Transformando dor em livro." },
-              { icon: Globe, label: "Global", year: "O Impacto", desc: "Dubai, Paris e o mundo." }
+              { icon: Target, label: "Propósito", year: "A Missão", desc: "O Livro 2% Basta nasceu." },
+              { icon: Globe, label: "Global", year: "O Impacto", desc: "Impactando o mundo nos palcos." }
             ].map((step, idx) => (
               <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
                 <div className="w-32 h-32 glass rounded-full flex items-center justify-center mb-10 border border-white/5 group-hover:border-[#F5C518]/50 transition-all duration-700 group-hover:scale-110 gold-glow">
                   <step.icon className="w-12 h-12 text-[#F5C518]" />
                 </div>
                 <div className="text-[10px] font-black text-[#F5C518] mb-3 tracking-[0.3em] uppercase">{step.year}</div>
-                <h3 className="text-2xl font-black text-white mb-3">{step.label}</h3>
+                <h3 className="text-2xl font-black text-white mb-3 tracking-tight">{step.label}</h3>
                 <p className="text-sm text-white/40 px-6 font-medium leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -179,17 +243,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
       </section>
 
       {/* O QUE VOCÊ VAI DESTRAVAR (EXPERIENCE CARDS) */}
-      <section className="py-40 bg-slate-50 relative overflow-hidden z-30">
+      <section className="py-40 bg-white relative overflow-hidden z-30">
         <div className="container mx-auto px-8">
           <div className="grid lg:grid-cols-3 gap-20 items-start">
             <div className="lg:col-span-1 space-y-10 sticky top-40">
-              <h2 className="text-5xl md:text-7xl font-black text-[#050505] leading-[0.85] tracking-tighter">
-                O QUE VOCÊ <br/> <span className="text-blue-900">DESTRAVA</span>
+              <h2 className="text-5xl md:text-7xl font-black text-[#050505] leading-[0.85] tracking-tighter uppercase">
+                O QUE <br/> <span className="text-blue-900">VOCÊ <br/> RECEBE</span>
               </h2>
               <p className="text-slate-500 text-xl leading-relaxed">
                 Este conteúdo é uma masterclass sobre resiliência prática. Sem filtros. Direto ao ponto.
               </p>
-              <div className="flex items-center gap-6 p-6 bg-white rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-slate-100 group cursor-pointer hover:shadow-2xl transition-all">
+              <div className="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-slate-100 group cursor-pointer hover:shadow-2xl transition-all">
                 <div className="w-16 h-16 bg-[#F5C518] rounded-2xl flex items-center justify-center shrink-0 shadow-lg group-hover:rotate-12 transition-transform">
                   <Play className="w-8 h-8 text-[#050505] fill-current" />
                 </div>
@@ -208,7 +272,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
                 { title: "Método 2%", desc: "O princípio prático aplicado à produtividade e vida real" },
                 { title: "Crescimento", desc: "Como transformar cada milímetro de dor em triunfo real" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-12 rounded-[40px] shadow-sm border border-slate-100 gold-glow-hover transition-all duration-500 group">
+                <div key={idx} className="bg-slate-50 p-12 rounded-[40px] shadow-sm border border-slate-100 gold-glow-hover transition-all duration-500 group">
                   <Zap className="w-10 h-10 text-[#F5C518] mb-8 opacity-20 group-hover:opacity-100 transition-opacity" />
                   <h4 className="text-[10px] font-black tracking-[0.4em] uppercase text-slate-400 mb-4">{item.title}</h4>
                   <p className="font-black text-[#050505] text-2xl leading-tight tracking-tight">{item.desc}</p>
@@ -249,8 +313,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
                     <ShieldCheck className="w-4 h-4 text-[#F5C518]" />
                     Portal Seguro | LGPD Compliance
                  </div>
-                 <p className="text-white/20 text-xs text-center max-w-md font-medium uppercase tracking-widest italic">
-                    "Ao acessar, você concorda com a jornada de superação de Alfredo Tanimoto."
+                 <p className="text-white/20 text-xs text-center max-w-md font-medium uppercase tracking-widest italic leading-relaxed">
+                    "Este conteúdo foi criado exclusivamente para os participantes das palestras de Alfredo Tanimoto."
                  </p>
               </div>
             </div>
@@ -287,7 +351,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onComplete }) => {
             <div>
               <p className="text-[10px] font-black tracking-widest uppercase text-white/20 mb-6">Autoridade</p>
               <ul className="space-y-4 text-white/60 font-bold text-xs uppercase tracking-widest">
-                <li>Livro 2%</li>
+                <li>Livro 2% Basta</li>
                 <li>Masterclass</li>
                 <li>Mídia</li>
               </ul>
